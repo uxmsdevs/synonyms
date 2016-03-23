@@ -11,15 +11,13 @@ $finalFile = 'structured/synonyms.sql';
 
 // Check and open source file line by line
 $lines = file($dataFile, FILE_IGNORE_NEW_LINES);
-if (!$lines) {
+if (!$lines)
     exit;
-}
 
 // Check and open Structured data file for write
 $structuredFile = fopen($finalFile, 'a');
-if (!$structuredFile) {
+if (!$structuredFile)
     exit;
-}
 
 // Define group number for every line (for every word and it's synonyms)
 $groupId = 1;
@@ -37,6 +35,7 @@ foreach ($lines as $line) {
     foreach ($commaSeparated as $word) {
         $structuredQuery .= '("", '.$groupId.', "'.$word.'"),';
     }
+
     $groupId++;
 
     // Edit query string for converting last comma to semicolon
